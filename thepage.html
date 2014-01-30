@@ -8,6 +8,27 @@
             var chars = document.getElementById("textBox").value.length;
             document.getElementById("count").innerHTML = "<p>" + chars + " characters</p>";
         }
+
+        function makeSave(start) {
+            var states = [];
+            states[0] = start;
+            function addState(state) {
+                states.push(state);
+            }
+            function removeState() {
+                states.splice(4, 1);
+            }
+            return {
+                save: function() {
+                    if (states.length == 5) {
+                        removeState();
+                    }
+                    var toAdd = document.getElementById("textBox").value;
+                    states.push(toAdd);
+                }
+            }
+
+        }
     </script>
 </head>
 <body>
@@ -16,7 +37,7 @@
     </form>
 
     <div id="count">
-        <p>0</p>
+        <p>0 characters</p>
     </div>
 
     <form>
