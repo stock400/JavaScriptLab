@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Javascript Lab thingy</title>
+    <script src="javaforpage.js"></script>
+    <script>
+        function charizardCount() {
+            var chars = document.getElementById("textBox").value.length;
+            document.getElementById("count").innerHTML = "<p>" + chars + " characters</p>";
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <input type="button" value="Display Character Count" onclick="charizardCount()" /> <br />
+    </form>
+
+    <div id="count">
+        <p>0</p>
+    </div>
+
+    <form>
+        <textarea id="textBox" rows="10" cols="100"></textarea>
+    </form>
+
+</body>
+</html>
