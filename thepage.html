@@ -12,23 +12,37 @@
         function makeSave(start) {
             var states = [];
             states[0] = start;
-            function addState(state) {
-                states.push(state);
-            }
-            function removeState() {
-                states.splice(4, 1);
-            }
+
+            var position = 0;
+
             return {
                 save: function() {
-                    if (states.length == 5) {
-                        removeState();
+                    if (states.length >= 5) {
+                        states.splice(4,1);
                     }
                     var toAdd = document.getElementById("textBox").value;
                     states.push(toAdd);
+                },
+
+                undo: function() {
+                    if (position >= states.length) {
+                        alert("you dumbass that's too far.");
+                    }else{
+                        document.getElementById("textBox").innerHTML = states[position++];
+                    }
+                },
+
+                redo: function() {
+                    if (position <= 0) {
+                        alert("wow shit-wad can't redo.")
+                    }else{
+                        document.getElementById("textBox").innerHTML = states[position--];
+                    }
                 }
             }
 
         }
+        var state = makeSave(document.getElementById("textBox").value);
     </script>
 </head>
 <body>
@@ -42,6 +56,11 @@
 
     <form>
         <textarea id="textBox" rows="10" cols="100"></textarea>
+    </form>
+
+    <form>
+        <input type="button" value="Save" onclick="state.save()" />
+        <input type="button" value="Undo" onclick="state.undo()" />
     </form>
 
 </body>
