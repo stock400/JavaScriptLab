@@ -9,40 +9,28 @@
             document.getElementById("count").innerHTML = "<p>" + chars + " characters</p>";
         }
 
-        function makeSave() {
+        function makeSave(start) {
             var states = [];
+            states[0] = start;
 
             var position = 0;
 
             return {
                 save: function() {
-                    position = 0;
-                    if (states.length >= 5) {
-                        states.splice(4,1);
-                    }
-                    var toAdd = "" + document.getElementById("textBox").value + "";
-                    states.push(toAdd);
+
                 },
 
                 undo: function() {
-                    if (position >= states.length) {
-                        alert("you dumbass that's too far.");
-                    }else{
-                        document.getElementById("textBox").innerHTML = states[position++];
-                    }
+
                 },
 
                 redo: function() {
-                    if (position <= 0) {
-                        alert("wow shit-wad can't redo.")
-                    }else{
-                        document.getElementById("textBox").innerHTML = states[position--];
-                    }
+
                 }
             }
 
         }
-        var state = makeSave();
+        var state = makeSave(document.getElementById("textBox").value);
     </script>
 </head>
 <body>
@@ -54,7 +42,7 @@
         <p>0 characters</p>
     </div>
 
-    <form>
+    <form id="textForm">
         <textarea id="textBox" rows="10" cols="100"></textarea>
     </form>
 
