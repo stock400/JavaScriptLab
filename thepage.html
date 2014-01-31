@@ -9,18 +9,18 @@
             document.getElementById("count").innerHTML = "<p>" + chars + " characters</p>";
         }
 
-        function makeSave(start) {
+        function makeSave() {
             var states = [];
-            states[0] = start;
 
             var position = 0;
 
             return {
                 save: function() {
+                    position = 0;
                     if (states.length >= 5) {
                         states.splice(4,1);
                     }
-                    var toAdd = document.getElementById("textBox").value;
+                    var toAdd = "" + document.getElementById("textBox").value + "";
                     states.push(toAdd);
                 },
 
@@ -42,7 +42,7 @@
             }
 
         }
-        var state = makeSave(document.getElementById("textBox").value);
+        var state = makeSave();
     </script>
 </head>
 <body>
@@ -61,6 +61,7 @@
     <form>
         <input type="button" value="Save" onclick="state.save()" />
         <input type="button" value="Undo" onclick="state.undo()" />
+        <input type="button" value="Redo" onclick="state.redo()" />
     </form>
 
 </body>
