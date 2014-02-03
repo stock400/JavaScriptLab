@@ -2,7 +2,6 @@ function makeSave(start) {
     var states = [];
     states[0] = start;
 
-    var input = document.getElementsByTagName('textarea');
     var position = 0;
 
     return {
@@ -12,20 +11,18 @@ function makeSave(start) {
         },
 
         undo: function() {
-            if (position <= 0) {
+            if (position >= states.length) {
                 alert("can't undo");
             } else {
-                var toUndo = states[position++];
-                document.getElementsByTagName('textarea').value = toUndo;
+                document.getElementsByTagName('textarea').value = states[position++];
             }
         },
 
         redo: function() {
-            if (position >= states.length) {
-                alert("can't redo");
+            if (position <= 0) {
+                prompt("can't redo");
             } else {
-                var toRedo = states[position--];
-                document.getElementsByTagName('textarea').value = toRedo;
+                document.getElementsByTagName('textarea').value = states[position--];
             }
         },
 
@@ -33,10 +30,12 @@ function makeSave(start) {
             console.log(states);
         },
 
-        makeString: function() {
+        makeString: function() {  var input = document.getElementsByTagName('textarea');
             states.toString();
         }
 
     }
 
 }
+
+module.exports.makeSave = makeSave;

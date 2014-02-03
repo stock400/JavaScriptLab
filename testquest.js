@@ -1,10 +1,8 @@
-var assert = require('assert');
-var makeSave = require("./javaforpage").makeSave;
+var assert = require("assert");
+var makeSave = require('./javaforpage').makeSave;
 
 var testSave = makeSave("save1");
-
 var testArray = ["save1"];
-
 describe('Saving', function() {
     describe('test 1', function() {
         it('should save the initial value into an array', function(){

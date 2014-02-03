@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <title>Javascript Lab thingy</title>
-    <script src="javaforpage.js">
-        var state = makeSave(document.getElementById("textBox").value);
-    </script>
+    <script src="javaforpage.js"></script>
     <script>
         function charizardCount() {
             var chars = document.getElementById("textBox").value.length;
             document.getElementById("count").innerHTML = "<p>" + chars + " characters</p>";
         }
+        var state = makeSave(document.getElementById("textBox").value);
     </script>
 
 </head>
