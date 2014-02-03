@@ -2,36 +2,16 @@
 <html>
 <head>
     <title>Javascript Lab thingy</title>
-    <script src="javaforpage.js"></script>
+    <script src="javaforpage.js">
+        var state = makeSave(document.getElementById("textBox").value);
+    </script>
     <script>
         function charizardCount() {
             var chars = document.getElementById("textBox").value.length;
             document.getElementById("count").innerHTML = "<p>" + chars + " characters</p>";
         }
-
-        function makeSave(start) {
-            var states = [];
-            states[0] = start;
-
-            var position = 0;
-
-            return {
-                save: function() {
-
-                },
-
-                undo: function() {
-
-                },
-
-                redo: function() {
-
-                }
-            }
-
-        }
-        var state = makeSave(document.getElementById("textBox").value);
     </script>
+
 </head>
 <body>
     <form>
@@ -47,7 +27,7 @@
     </form>
 
     <form>
-        <input type="button" value="Save" onclick="state.save()" />
+        <input type="button" value="Save" onclick="state.save(document.getElementById('textBox').value)" />
         <input type="button" value="Undo" onclick="state.undo()" />
         <input type="button" value="Redo" onclick="state.redo()" />
     </form>
