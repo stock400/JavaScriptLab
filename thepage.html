@@ -5,11 +5,27 @@
     <title>Javascript Lab thingy</title>
     <script src="javaforpage.js"></script>
     <script>
+        var state = makeSave(document.getElementById("textBox").value);
+
+        $(document).ready(function() {
+            $("#save").click(function() {
+                state.save($("#textBox").val());
+            });
+
+            $("#undo").click(function() {
+               $("#textBox").val("something");
+            });
+
+            $("#redo").click(function() {
+                $('textBox').val(state.redo());
+            })
+        });
+
         function charizardCount() {
             var chars = document.getElementById("textBox").value.length;
             document.getElementById("count").innerHTML = "<p>" + chars + " characters</p>";
         }
-        var state = makeSave(document.getElementById("textBox").value);
+
     </script>
 
 </head>
@@ -27,9 +43,9 @@
     </form>
 
     <form>
-        <input type="button" value="Save" onclick="state.save(document.getElementById('textBox').value)" />
-        <input type="button" value="Undo" onclick="state.undo()" />
-        <input type="button" value="Redo" onclick="state.redo()" />
+        <input type="button" id="save" value="Save" />
+        <input type="button" id="undo" value="Undo"  />
+        <input type="button" id="redo" value="Redo" />
     </form>
 
 </body>
