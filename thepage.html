@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
-<!-- Brandon Stock and Xavier Walcome -->
 <head>
-    <title>JavaScript Lab</title>
+    <title>Result</title>
     <script type='text/javascript' src='javaforpage.js'>
         var state = makeSave(document.getElementById("textBox").value);
 
@@ -45,7 +44,12 @@
 
             $("#redo").click(function() {
                 $('textBox').val(state.redo());
-            })
+            });
+
+            $('#search').click(function () {
+                var search = $('#searchField').val();
+                $('#searchResults').html($('#textBox').val().replace(new RegExp(search, '<span style='color:yellow;'>' + search + '</span>')));
+            })           
 
         });
     </script>
