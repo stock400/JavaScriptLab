@@ -7,22 +7,28 @@ function makeSave(start) {
     return {
         save: function(boxState) {
             position = 0;
-            states.push(boxState)
+            if(states.length == 5) {
+                states.splice(4, 1);
+                states.unshift(boxState);
+            } else {
+                states.unshift(boxState);
+            }
+            return states[0];
         },
 
         undo: function() {
             if (position >= states.length) {
-                alert("can't undo");
+                return alert("Can't undo");
             } else {
-                document.getElementsByTagName('textarea').value = states[position++];
+                return states[++position];
             }
         },
 
         redo: function() {
             if (position <= 0) {
-                prompt("can't redo");
+                return alert("Can't redo");
             } else {
-                document.getElementsByTagName('textarea').value = states[position--];
+                return states[--position];
             }
         },
 
@@ -30,8 +36,8 @@ function makeSave(start) {
             console.log(states);
         },
 
-        makeString: function() {  var input = document.getElementsByTagName('textarea');
-            states.toString();
+        makeString: function() {
+            return states.toString();
         }
 
     }
