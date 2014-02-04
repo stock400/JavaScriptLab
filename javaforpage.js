@@ -1,3 +1,7 @@
+function charizardCount(textValue) {
+    return textValue.length;
+}
+
 function makeSave(start) {
     var states = [];
     states[0] = start;
@@ -20,7 +24,7 @@ function makeSave(start) {
             if (position >= states.length) {
                 return alert("Can't undo");
             } else {
-                return states[++position];
+                return '' +states[++position] + '';
             }
         },
 
@@ -28,20 +32,15 @@ function makeSave(start) {
             if (position <= 0) {
                 return alert("Can't redo");
             } else {
-                return states[--position];
+                return '' + states[--position] + '';
             }
-        },
-
-        printStates: function() {
-            console.log(states);
-        },
-
-        makeString: function() {
-            return states.toString();
         }
-
     }
 
 }
 
+
+
+
 module.exports.makeSave = makeSave;
+module.exports.charizardCount = charizardCount;
