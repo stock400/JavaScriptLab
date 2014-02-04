@@ -1,52 +1,84 @@
 <!DOCTYPE html>
 <html>
+<!-- Brandon Stock and Xavier Walcome -->
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <title>Javascript Lab thingy</title>
-    <script src="javaforpage.js"></script>
-    <script>
+    <title>Result</title>
+    <script type='text/javascript' src='javaforpage.js'>
         var state = makeSave(document.getElementById("textBox").value);
 
         $(document).ready(function() {
+            $('#background').click(function() {
+                $('body').css('background-color', 'blue');
+            });
+
+            $('#backgroundOrig').click(function() {
+                $('body').css('background-color', 'white');
+            });
+
+            $('#textareaColor').click(function() {
+                $('#textBox').css('background-color', 'red');
+            });
+
+            $('#textareaColorOrig').click(function() {
+                $('#textBox').css('background-color', 'white');
+            });
+
+
+            $('#textSizePlus').click(function() {
+                $('#textBox').css('font-size', '20px');
+            });
+
+            $('#textSizeMinus').click(function() {
+                $('#textBox').css('font-size', '13px');
+            });
+
+            $('#search').click(function () {
+                $('#searchResults').html($('#textBox').val());
+            });
             $("#save").click(function() {
                 state.save($("#textBox").val());
             });
 
             $("#undo").click(function() {
-               $("#textBox").val("something");
+                $("#textBox").val(state.undo);
             });
 
             $("#redo").click(function() {
                 $('textBox').val(state.redo());
             })
+
         });
-
-        function charizardCount() {
-            var chars = document.getElementById("textBox").value.length;
-            document.getElementById("count").innerHTML = "<p>" + chars + " characters</p>";
-        }
-
     </script>
-
 </head>
 <body>
-    <form>
-        <input type="button" value="Display Character Count" onclick="charizardCount()" /> <br />
-    </form>
+<form>
+    <input type="button" id="background" value="Change the Background Color!" />
+    <input type="button" id="backgroundOrig" value="Change the Background Back!" /><br />
+    <input type="button" id="textareaColor" value="Change the Text Box Color!" />
+    <input type="button" id="textareaColorOrig" value="Change the Text Box Color Back!" /> <br />
+    <input type="button" id="textSizePlus" value="Increase Text Box Font Size!" />
+    <input type="button" id="textSizeMinus" value="Decrease the Text Box Font to Normal!" /><br />
+    <input type="button" value="Display Character Count" onclick="document.getElementById('count').innerHTML = '' + charizardCount(document.getElementById('textBox').value) + ' characters ' " />
+</form>
+<div id="count">
+    0 characters
+</div>
 
-    <div id="count">
-        <p>0 characters</p>
-    </div>
+<form id="textForm">
+    <textarea id="textBox" rows="10" cols="100"></textarea>
+</form>
 
-    <form id="textForm">
-        <textarea id="textBox" rows="10" cols="100"></textarea>
-    </form>
+<form>
 
-    <form>
-        <input type="button" id="save" value="Save" />
-        <input type="button" id="undo" value="Undo"  />
-        <input type="button" id="redo" value="Redo" />
-    </form>
+    <input type="button" id="save" value="Save" onclick="state.save(document.getElementById('textBox').value)"/>
+    <input type="button" id="undo" value="Undo" onclick="document.getElementById('textBox').value = 'come on!'"/>
+    <input type="button" id="redo" value="Redo" onclick="document.getElementById('textBox').value = state.redo()" /> <br />
+    <input type="text" id="searchField" value="Search Here" />
+    <input type="button" id="search" value="Find" />
+    <input type="button" id="done" value="Done" />
 
+</form>
+<div id="searchResult">
+</div>
 </body>
 </html>
